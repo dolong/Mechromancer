@@ -1,0 +1,1449 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <variable constant="0" name="mMax" static="0" type="number">0</variable>
+        <variable constant="0" name="mHeld" static="0" type="number">0</variable>
+        <variable constant="0" name="scrap" static="0" type="number">100</variable>
+        <variable constant="0" name="allies" static="0" type="number">0</variable>
+        <variable constant="0" name="minionCD" static="0" type="number">0</variable>
+        <variable constant="0" name="villains" static="0" type="number">0</variable>
+        <variable constant="0" name="boss" static="0" type="number">500</variable>
+        <variable constant="0" name="Traildispersion" static="0" type="number">0</variable>
+        <comment>Always look at the mouse.</comment>
+        <event-block>
+            <conditions>
+                <condition id="-2" name="On start of layout" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" type="Sprite">
+                    <param id="0" name="Object">Sprite4</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" type="Sprite4">
+                    <param id="0" name="Pin to">Sprite</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" type="HealthBar">
+                    <param id="0" name="Pin to">robotvillain</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" type="enemyRng">
+                    <param id="0" name="Pin to">robotvillain</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action id="0" name="Play" type="Audio">
+                    <param id="0" name="Audio file">mm7intro</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;mm7&quot;</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" type="robotvillain">
+                    <param id="0" name="Pin to">enemy</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" type="hero">
+                    <param id="0" name="Pin to">Player</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" type="shotpoint">
+                    <param id="0" name="Pin to">hero</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-18" name="On created" type="Sprite4" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" type="System">
+                    <param id="0" name="Object to create">bossHP</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">160</param>
+                    <param id="3" name="Y">60</param>
+                </action>
+                <action id="0" name="Spawn another object" type="Sprite4">
+                    <param id="0" name="Object">enemy</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" type="enemy">
+                    <param id="0" name="Pin to">Sprite4</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action id="-10" name="Set value" type="enemy">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Value">boss</param>
+                </action>
+                <action id="-5" name="Set width" type="bossHP">
+                    <param id="0" name="Width">sprite4.health</param>
+                </action>
+                <action id="-10" name="Set value" type="Sprite4">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Value">boss</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-6" name="Every X seconds" type="System">
+                    <param id="0" name="Interval (seconds)">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-8" name="Set angle" type="Sprite">
+                    <param id="0" name="Angle">sprite.Angle + 180</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-1" name="Every tick" type="System" />
+            </conditions>
+            <actions>
+                <action id="-5" name="Set width" type="HealthBar">
+                    <param id="0" name="Width">robotvillain.RobotHealth</param>
+                </action>
+                <action id="-6" name="Set height" type="MyHealth">
+                    <param id="0" name="Height">Player.MyHealth</param>
+                </action>
+                <action id="0" name="Set text" type="healthNum">
+                    <param id="0" name="Text">Player.MyHealth</param>
+                </action>
+                <action id="0" name="Set text" type="scrapTxt">
+                    <param id="0" name="Text">scrap</param>
+                </action>
+                <action id="-25" name="Move to bottom" type="bg" />
+                <action id="-17" name="Move forward" type="Sprite">
+                    <param id="0" name="Distance">2</param>
+                </action>
+                <action id="-5" name="Set width" type="bossHP">
+                    <param id="0" name="Width">sprite4.health</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-7" name="Compare instance variable" type="allies">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Pin" id="0" name="Pin to object" type="allies">
+                    <param id="0" name="Pin to">Player</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Movement animations</comment>
+        <event-block any="1">
+            <conditions>
+                <condition id="-18" name="On created" type="Bullet" />
+                <condition id="-8" name="Is boolean instance variable set" type="Player">
+                    <param id="0" name="Instance variable">moving</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="Is within angle" type="Player">
+                            <param id="0" name="Within">40</param>
+                            <param id="1" name="Angle">270</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" type="hero">
+                            <param id="0" name="Animation">&quot;up&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="Is within angle" type="Player">
+                            <param id="0" name="Within">40</param>
+                            <param id="1" name="Angle">90</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" type="hero">
+                            <param id="0" name="Animation">&quot;down&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="Is within angle" type="Player">
+                            <param id="0" name="Within">40</param>
+                            <param id="1" name="Angle">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" type="hero">
+                            <param id="0" name="Animation">&quot;right&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="Is within angle" type="Player">
+                            <param id="0" name="Within">40</param>
+                            <param id="1" name="Angle">180</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" type="hero">
+                            <param id="0" name="Animation">&quot;left&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-3" name="Is on-screen" type="Sprite4" />
+                <condition id="-6" name="Every X seconds" type="System">
+                    <param id="0" name="Interval (seconds)">0.2</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block>
+                    <conditions />
+                    <actions />
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="Is within angle" type="Sprite">
+                            <param id="0" name="Within">40</param>
+                            <param id="1" name="Angle">180</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" type="Sprite4">
+                            <param id="0" name="Animation">&quot;left&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="Is within angle" type="Sprite">
+                            <param id="0" name="Within">40</param>
+                            <param id="1" name="Angle">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" type="Sprite4">
+                            <param id="0" name="Animation">&quot;right&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions />
+                    <actions />
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-3" name="Is on-screen" type="robotvillain" />
+                <condition id="-6" name="Every X seconds" type="System">
+                    <param id="0" name="Interval (seconds)">0.2</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="robotvillain">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">enemy.ID</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="Is within angle" type="enemy">
+                            <param id="0" name="Within">40</param>
+                            <param id="1" name="Angle">270</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" type="robotvillain">
+                            <param id="0" name="Animation">&quot;up&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="Is within angle" type="enemy">
+                            <param id="0" name="Within">40</param>
+                            <param id="1" name="Angle">180</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" type="robotvillain">
+                            <param id="0" name="Animation">&quot;left&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="Is within angle" type="enemy">
+                            <param id="0" name="Within">40</param>
+                            <param id="1" name="Angle">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" type="robotvillain">
+                            <param id="0" name="Animation">&quot;right&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="Is within angle" type="enemy">
+                            <param id="0" name="Within">40</param>
+                            <param id="1" name="Angle">90</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" type="robotvillain">
+                            <param id="0" name="Animation">&quot;downwards&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Healthbars</comment>
+        <event-block>
+            <conditions>
+                <condition id="-11" name="For Each" type="System">
+                    <param id="0" name="Object">Sprite2</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="allyHealth">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">sprite2.ID</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-5" name="Set width" type="allyHealth">
+                    <param id="0" name="Width">sprite2.health</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Unit Creations</comment>
+        <event-block>
+            <conditions>
+                <condition id="-6" name="Every X seconds" type="System">
+                    <param id="0" name="Interval (seconds)">5</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="Sprite4">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">boss</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" type="Sprite4">
+                    <param id="0" name="Object">robotvillain</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="3" name="On touched object" type="Touch">
+                    <param id="0" name="Object">enemy</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="robotvillain">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">enemy.ID</param>
+                </condition>
+            </conditions>
+            <actions />
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-18" name="On created" type="robotvillain" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" type="System">
+                    <param id="0" name="Variable">villains</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" type="robotvillain">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Value">villains</param>
+                </action>
+                <action id="0" name="Spawn another object" type="robotvillain">
+                    <param id="0" name="Object">enemyRng</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Spawn another object" type="robotvillain">
+                    <param id="0" name="Object">HealthBar</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+                <action id="0" name="Spawn another object" type="robotvillain">
+                    <param id="0" name="Object">enemy</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-10" name="Set value" type="enemyRng">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Value">villains</param>
+                </action>
+                <action id="-10" name="Set value" type="HealthBar">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Value">villains</param>
+                </action>
+                <action id="-10" name="Set value" type="enemy">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Value">villains</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" type="robotvillain">
+                    <param id="0" name="Pin to">enemy</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" type="enemyRng">
+                    <param id="0" name="Pin to">robotvillain</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" type="HealthBar">
+                    <param id="0" name="Pin to">robotvillain</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action id="-1" name="Set X" type="robotvillain">
+                    <param id="0" name="X">300</param>
+                </action>
+                <action id="-2" name="Set Y" type="robotvillain">
+                    <param id="0" name="Y">10</param>
+                </action>
+                <action id="-13" name="Set boolean" type="robotvillain">
+                    <param id="0" name="Instance variable">moving</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="enemy">
+                    <param id="0" name="Pin to">robotvillain</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Unit Searching</comment>
+        <event-block>
+            <conditions>
+                <condition id="-6" name="Every X seconds" type="System">
+                    <param id="0" name="Interval (seconds)">0.5</param>
+                </condition>
+                <condition id="-15" name="Pick nearest/furthest" type="allies">
+                    <param id="0" name="Which">0</param>
+                    <param id="1" name="X">enemy.X</param>
+                    <param id="2" name="Y">enemy.Y</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-22" name="Set angle toward position" type="enemy">
+                    <param id="0" name="X">allies.X</param>
+                    <param id="1" name="Y">allies.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-11" name="For Each" type="System">
+                    <param id="0" name="Object">robotvillain</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" type="robotvillain">
+                    <param id="0" name="Instance variable">moving</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" type="enemy">
+                            <param id="0" name="Instance variable">ID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">robotvillain.ID</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-17" name="Move forward" type="enemy">
+                            <param id="0" name="Distance">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-6" name="Every X seconds" type="System">
+                    <param id="0" name="Interval (seconds)">0.5</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Sprite2">
+                    <param id="0" name="Instance variable">fresh</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="allies">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">Sprite2.ID</param>
+                </condition>
+                <condition id="-15" name="Pick nearest/furthest" type="enemy">
+                    <param id="0" name="Which">0</param>
+                    <param id="1" name="X">allies.X</param>
+                    <param id="2" name="Y">allies.Y</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-22" name="Set angle toward position" type="allies">
+                    <param id="0" name="X">enemy.X</param>
+                    <param id="1" name="Y">enemy.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-3" name="Is on-screen" type="Sprite2" />
+                <condition id="-8" name="Is boolean instance variable set" type="Sprite2">
+                    <param id="0" name="Instance variable">isMoving</param>
+                </condition>
+                <condition id="1" inverted="1" name="Is overlapping another object" type="allyZone">
+                    <param id="0" name="Object">robotvillain</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-17" name="Move forward" type="allies">
+                    <param id="0" name="Distance">1.5</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Sprite2">
+                    <param id="0" name="Instance variable">fresh</param>
+                </condition>
+                <condition id="1" inverted="1" name="Is overlapping another object" type="allyZone">
+                    <param id="0" name="Object">robotvillain</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" type="Sprite2">
+                    <param id="0" name="Instance variable">isMoving</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-3" inverted="1" name="Is on-screen" type="Sprite2" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" type="Sprite2" />
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="1" name="Is overlapping another object" type="allyZone">
+                    <param id="0" name="Object">robotvillain</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" type="Sprite2">
+                    <param id="0" name="Instance variable">isMoving</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>ally shooting</comment>
+        <event-block>
+            <conditions>
+                <condition id="-6" name="Every X seconds" type="System">
+                    <param id="0" name="Interval (seconds)">0.2</param>
+                </condition>
+                <condition id="-16" name="Is on layer" type="Sprite2">
+                    <param id="0" name="Layer">0</param>
+                </condition>
+                <condition id="1" name="Is overlapping another object" type="allyZone">
+                    <param id="0" name="Object">robotvillain</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="allies">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">allyZone.ID</param>
+                </condition>
+            </conditions>
+            <actions />
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-6" name="Every X seconds" type="System">
+                    <param id="0" name="Interval (seconds)">1.0</param>
+                </condition>
+                <condition id="-11" name="For Each" type="System">
+                    <param id="0" name="Object">enemyRng</param>
+                </condition>
+                <condition id="1" name="Is overlapping another object" type="enemyRng">
+                    <param id="0" name="Object">allies</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="enemy">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">enemyRng.ID</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="robotvillain">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">enemyRng.ID</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" type="robotvillain">
+                    <param id="0" name="Instance variable">moving</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-22" name="Set angle toward position" type="enemy">
+                    <param id="0" name="X">allies.X</param>
+                    <param id="1" name="Y">allies.Y</param>
+                </action>
+                <action id="0" name="Spawn another object" type="enemy">
+                    <param id="0" name="Object">spot</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-22" name="Else" type="System" />
+                <condition id="-11" name="For Each" type="System">
+                    <param id="0" name="Object">enemyRng</param>
+                </condition>
+                <condition id="1" inverted="1" name="Is overlapping another object" type="enemyRng">
+                    <param id="0" name="Object">allies</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="enemy">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">enemyRng.ID</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="robotvillain">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">enemyRng.ID</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" type="robotvillain">
+                    <param id="0" name="Instance variable">moving</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-7" name="Compare instance variable" type="Sprite2">
+                    <param id="0" name="Instance variable">health</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" type="Sprite2" />
+            </actions>
+        </event-block>
+        <comment>Unit Destructions</comment>
+        <event-block>
+            <conditions>
+                <condition id="-7" name="Compare instance variable" type="robotvillain">
+                    <param id="0" name="Instance variable">RobotHealth</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" type="robotvillain" />
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-7" name="Compare instance variable" type="Sprite4">
+                    <param id="0" name="Instance variable">health</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="enemy">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">boss</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" type="Sprite4" />
+                <action id="-9" name="Destroy" type="enemy" />
+                <action id="-9" name="Destroy" type="Sprite" />
+                <action id="-9" name="Destroy" type="bossHP" />
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-19" name="On destroyed" type="bossHP" />
+            </conditions>
+            <actions>
+                <action id="-1" name="Set X" type="victory">
+                    <param id="0" name="X">325</param>
+                </action>
+                <action id="6" name="Stop" type="Audio">
+                    <param id="0" name="Tag">&quot;mm7&quot;</param>
+                </action>
+                <action id="0" name="Play" type="Audio">
+                    <param id="0" name="Audio file">FF7_Victory_(Fanfare)</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-7" name="Compare instance variable" type="Player">
+                    <param id="0" name="Instance variable">MyHealth</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" type="Player" />
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-19" name="On destroyed" type="Player" />
+                <condition id="-7" name="Compare instance variable" type="allies">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">robotvillain.ID</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" type="allies" />
+                <action id="-9" name="Destroy" type="hero" />
+                <action id="-9" name="Destroy" type="shotpoint" />
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-19" name="On destroyed" type="robotvillain" />
+                <condition id="-7" name="Compare instance variable" type="HealthBar">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">robotvillain.ID</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="enemyRng">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">robotvillain.ID</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="enemy">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">robotvillain.ID</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" type="HealthBar" />
+                <action id="-9" name="Destroy" type="HealthBG" />
+                <action id="-9" name="Destroy" type="enemyRng" />
+                <action id="-9" name="Destroy" type="enemy" />
+                <action id="-10" name="Add to" type="System">
+                    <param id="0" name="Variable">scrap</param>
+                    <param id="1" name="Value">100</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="0" name="On collision with another object" type="spot">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" type="spot" />
+                <action id="-12" name="Subtract from" type="Player">
+                    <param id="0" name="Instance variable">MyHealth</param>
+                    <param id="1" name="Value">10</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="0" name="On collision with another object" type="spot">
+                    <param id="0" name="Object">Sprite2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" type="spot" />
+                <action id="-12" name="Subtract from" type="Sprite2">
+                    <param id="0" name="Instance variable">health</param>
+                    <param id="1" name="Value">10</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-19" name="On destroyed" type="Sprite2" />
+                <condition id="-7" name="Compare instance variable" type="allyZone">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">sprite2.ID</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="allyHealth">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">sprite2.ID</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="allies">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">sprite2.ID</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" type="allyZone" />
+                <action id="-9" name="Destroy" type="allyHealth" />
+                <action id="-9" name="Destroy" type="allies" />
+            </actions>
+        </event-block>
+        <comment>Shoot a bullet on left click.</comment>
+        <event-block>
+            <conditions>
+                <condition id="3" name="On touched object" type="Touch">
+                    <param id="0" name="Object">enemy</param>
+                </condition>
+                <condition disabled="1" id="7" name="Cursor is over object" type="Mouse">
+                    <param id="0" name="Object">robotvillain</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" type="Player">
+                    <param id="0" name="Instance variable">moving</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-22" name="Set angle toward position" type="Player">
+                    <param id="0" name="X">touch.X</param>
+                    <param id="1" name="Y">touch.Y</param>
+                </action>
+                <action id="0" name="Spawn another object" type="shotpoint">
+                    <param id="0" name="Object">Bullet</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+                <action id="-8" name="Set angle" type="Bullet">
+                    <param id="0" name="Angle">player.Angle</param>
+                </action>
+                <action id="0" name="Play" type="Audio">
+                    <param id="0" name="Audio file">Pew_Pew-DKnight556-1379997159</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="-13" name="Set boolean" type="Player">
+                    <param id="0" name="Instance variable">moving</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Ally make</comment>
+        <event-block>
+            <conditions>
+                <condition id="3" name="On touched object" type="Touch">
+                    <param id="0" name="Object">create</param>
+                </condition>
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">scrap</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">100</param>
+                </condition>
+                <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Sprite2">
+                    <param id="0" name="Instance variable">fresh</param>
+                </condition>
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">minionCD</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" type="create">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Set value" type="System">
+                    <param id="0" name="Variable">minionCD</param>
+                    <param id="1" name="Value">5</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-6" name="Every X seconds" type="System">
+                    <param id="0" name="Interval (seconds)">1.0</param>
+                </condition>
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">minionCD</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" type="System">
+                    <param id="0" name="Variable">minionCD</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-16" name="Set opacity" type="loading">
+                    <param id="0" name="Opacity">70</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">minionCD</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" type="cd">
+                    <param id="0" name="Text">minionCD</param>
+                </action>
+                <action id="-15" name="Set visible" type="cd">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-22" name="Else" type="System" />
+            </conditions>
+            <actions>
+                <action id="-16" name="Set opacity" type="loading">
+                    <param id="0" name="Opacity">0</param>
+                </action>
+                <action id="-15" name="Set visible" type="cd">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-18" name="On created" type="Sprite2" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" type="System">
+                    <param id="0" name="Variable">allies</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" type="Sprite2">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Value">allies</param>
+                </action>
+                <action id="-11" name="Subtract from" type="System">
+                    <param id="0" name="Variable">scrap</param>
+                    <param id="1" name="Value">100</param>
+                </action>
+                <action id="-13" name="Set boolean" type="Sprite2">
+                    <param id="0" name="Instance variable">fresh</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Spawn another object" type="Sprite2">
+                    <param id="0" name="Object">allyZone</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Spawn another object" type="Sprite2">
+                    <param id="0" name="Object">allyHealth</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">2</param>
+                </action>
+                <action id="-10" name="Set value" type="allyHealth">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Value">allies</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" type="allyHealth">
+                    <param id="0" name="Pin to">Sprite2</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action id="-10" name="Set value" type="allyZone">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Value">allies</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" type="allyZone">
+                    <param id="0" name="Pin to">Sprite2</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action id="0" name="Spawn another object" type="Sprite2">
+                    <param id="0" name="Object">allies</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-10" name="Set value" type="allies">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Value">allies</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" type="Sprite2">
+                    <param id="0" name="Pin to">allies</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action id="-1" name="Set X" type="allies">
+                    <param id="0" name="X">touch.X</param>
+                </action>
+                <action id="-2" name="Set Y" type="allies">
+                    <param id="0" name="Y">touch.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="1" name="On any touch end" type="Touch" />
+                <condition id="-8" name="Is boolean instance variable set" type="Sprite2">
+                    <param id="0" name="Instance variable">fresh</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" type="allies">
+                    <param id="0" name="Instance variable">ID</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">sprite2.ID</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Play" type="Audio">
+                    <param id="0" name="Audio file">artil.die</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">-20</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="-13" name="Set boolean" type="Sprite2">
+                    <param id="0" name="Instance variable">fresh</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-3" name="Set position" type="allies">
+                    <param id="0" name="X">hero.X</param>
+                    <param id="1" name="Y">hero.Y+50</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Bullet Damage</comment>
+        <event-block>
+            <conditions>
+                <condition id="3" name="On touched object" type="Touch">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-16" name="Set opacity" type="Player">
+                    <param id="0" name="Opacity">70</param>
+                </action>
+                <action id="-13" name="Set boolean" type="Player">
+                    <param id="0" name="Instance variable">selected</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="0" name="On collision with another object" type="Bullet">
+                    <param id="0" name="Object">robotvillain</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" type="robotvillain">
+                    <param id="0" name="Instance variable">RobotHealth</param>
+                    <param id="1" name="Value">10</param>
+                </action>
+                <action id="-9" name="Destroy" type="Bullet" />
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="0" name="On collision with another object" type="Bullet">
+                    <param id="0" name="Object">Sprite4</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" type="Sprite4">
+                    <param id="0" name="Instance variable">health</param>
+                    <param id="1" name="Value">10</param>
+                </action>
+                <action id="-9" name="Destroy" type="Bullet" />
+            </actions>
+        </event-block>
+        <comment>clear click</comment>
+        <event-block>
+            <conditions>
+                <condition id="0" name="On any touch start" type="Touch" />
+                <condition id="4" inverted="1" name="Is touching object" type="Touch">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" type="Touch">
+                    <param id="0" name="Object">Sprite2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" type="System">
+                    <param id="0" name="Variable">mHeld</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" type="System">
+                    <param id="0" name="Variable">mMax</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="0" name="Clear" type="playerMouseY" />
+                <action id="0" name="Clear" type="playerMouseX" />
+                <action id="-16" name="Set opacity" type="Player">
+                    <param id="0" name="Opacity">100</param>
+                </action>
+                <action id="-13" name="Set boolean" type="Player">
+                    <param id="0" name="Instance variable">moving</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-3" name="Set position" type="trail">
+                    <param id="0" name="X">player.X</param>
+                    <param id="1" name="Y">player.Y</param>
+                </action>
+                <action id="-22" name="Set angle toward position" type="Player">
+                    <param id="0" name="X">touch.X</param>
+                    <param id="1" name="Y">touch.Y</param>
+                </action>
+                <action id="-13" name="Set boolean" type="Player">
+                    <param id="0" name="Instance variable">selected</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Trails</comment>
+        <event-block>
+            <conditions>
+                <condition id="0" name="On any touch start" type="Touch" />
+                <condition id="4" name="Is touching object" type="Touch">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+                <condition id="-3" name="Is on-screen" type="trail" />
+            </conditions>
+            <actions>
+                <action id="-16" name="Set opacity" type="Player">
+                    <param id="0" name="Opacity">70</param>
+                </action>
+                <action id="-13" name="Set boolean" type="Player">
+                    <param id="0" name="Instance variable">selected</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-13" name="Set boolean" type="Player">
+                    <param id="0" name="Instance variable">hasTrail</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-18" name="On created" type="PlayerTrail" />
+                <condition id="-8" name="Is boolean instance variable set" type="Player">
+                    <param id="0" name="Instance variable">hasTrail</param>
+                </condition>
+                <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" type="System">
+                    <param id="0" name="Variable">mHeld</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" type="System">
+                    <param id="0" name="Variable">mMax</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="0" name="Clear" type="playerMouseY" />
+                <action id="0" name="Clear" type="playerMouseX" />
+                <action id="-13" name="Set boolean" type="Player">
+                    <param id="0" name="Instance variable">hasTrail</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="2" name="Is in touch" type="Touch" />
+                <condition id="-10" name="Compare opacity" type="Player">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="Opacity">70</param>
+                </condition>
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">mHeld</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">100</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" type="Player">
+                    <param id="0" name="Instance variable">selected</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" type="Touch">
+                    <param id="0" name="Object">robotvillain</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" type="Touch">
+                    <param id="0" name="Object">Sprite2</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" type="Touch">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" type="trail">
+                    <param id="0" name="X">touch.X</param>
+                    <param id="1" name="Y">touch.Y</param>
+                </action>
+                <action id="0" name="Spawn another object" type="trail">
+                    <param id="0" name="Object">PlayerTrail</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-1" name="Every tick" type="System" />
+                <condition id="2" inverted="1" name="Is in touch" type="Touch" />
+                <condition id="4" inverted="1" name="Is touching object" type="Touch">
+                    <param id="0" name="Object">robotvillain</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" type="Touch">
+                    <param id="0" name="Object">Sprite2</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" type="Touch">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-16" name="Set opacity" type="PlayerTrail">
+                    <param id="0" name="Opacity">lerp(self.Opacity,0,5*dt)</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-10" name="Compare opacity" type="PlayerTrail">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Opacity">10</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="PlayerTrail" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-6" name="Every X seconds" type="System">
+                    <param id="0" name="Interval (seconds)">0.01</param>
+                </condition>
+                <condition id="2" name="Is in touch" type="Touch" />
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">mHeld</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">100</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" type="Touch">
+                    <param id="0" name="Object">robotvillain</param>
+                </condition>
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">mHeld</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">100</param>
+                </condition>
+                <condition id="-10" name="Compare opacity" type="Player">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="Opacity">70</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" type="Touch">
+                    <param id="0" name="Object">Sprite2</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" type="Touch">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="2" name="Set at X" type="playerMouseX">
+                    <param id="0" name="X">mHeld</param>
+                    <param id="1" name="Value">touch.X</param>
+                </action>
+                <action id="2" name="Set at X" type="playerMouseY">
+                    <param id="0" name="X">mHeld</param>
+                    <param id="1" name="Value">touch.Y</param>
+                </action>
+                <action id="-10" name="Add to" type="System">
+                    <param id="0" name="Variable">mHeld</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">mHeld</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" type="Player">
+                    <param id="0" name="Instance variable">moving</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-1" name="Every tick" type="System" />
+                <condition id="-8" name="Is boolean instance variable set" type="Player">
+                    <param id="0" name="Instance variable">moving</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-23" name="Move at angle" type="Player">
+                    <param id="0" name="Angle">player.Angle</param>
+                    <param id="1" name="Distance">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="1" name="On any touch end" type="Touch" />
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">mHeld</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+                <condition id="-10" name="Compare opacity" type="Player">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="Opacity">70</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" type="Touch">
+                    <param id="0" name="Object">robotvillain</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" type="Touch">
+                    <param id="0" name="Object">Sprite2</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" type="Touch">
+                    <param id="0" name="Object">Player</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" type="System">
+                    <param id="0" name="Variable">mMax</param>
+                    <param id="1" name="Value">mHeld</param>
+                </action>
+                <action id="2" name="Set at X" type="playerMouseX">
+                    <param id="0" name="X">mHeld</param>
+                    <param id="1" name="Value">touch.X</param>
+                </action>
+                <action id="2" name="Set at X" type="playerMouseY">
+                    <param id="0" name="X">mHeld</param>
+                    <param id="1" name="Value">touch.Y</param>
+                </action>
+                <action id="-16" name="Set opacity" type="Player">
+                    <param id="0" name="Opacity">100</param>
+                </action>
+                <action id="-22" name="Set angle toward position" type="Player">
+                    <param id="0" name="X">playerMouseX.At(1)</param>
+                    <param id="1" name="Y">playerMouseY.At(1)</param>
+                </action>
+                <action id="-1" name="Set X" type="trail">
+                    <param id="0" name="X">playerMouseX.At(1)</param>
+                </action>
+                <action id="-2" name="Set Y" type="trail">
+                    <param id="0" name="Y">playerMouseY.At(1)</param>
+                </action>
+                <action id="-13" name="Set boolean" type="Player">
+                    <param id="0" name="Instance variable">moving</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-11" name="Subtract from" type="System">
+                    <param id="0" name="Variable">mHeld</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="1" name="Is overlapping another object" type="Player">
+                    <param id="0" name="Object">trail</param>
+                </condition>
+                <condition id="-14" name="Compare variable" type="System">
+                    <param id="0" name="Variable">mHeld</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" type="Player">
+                    <param id="0" name="Instance variable">moving</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-1" name="Set X" type="trail">
+                    <param id="0" name="X">playerMouseX.At(mMax-mHeld)</param>
+                </action>
+                <action id="-2" name="Set Y" type="trail">
+                    <param id="0" name="Y">playerMouseY.At(mMax-mHeld)</param>
+                </action>
+                <action id="-22" name="Set angle toward position" type="Player">
+                    <param id="0" name="X">trail.X</param>
+                    <param id="1" name="Y">trail.Y</param>
+                </action>
+                <action id="-11" name="Subtract from" type="System">
+                    <param id="0" name="Variable">mHeld</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block>
+            <conditions>
+                <condition id="-1" name="Compare X" type="trail">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="X co-ordinate">0</param>
+                </condition>
+                <condition id="-2" name="Compare Y" type="trail">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="Y co-ordinate">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-1" name="Set X" type="trail">
+                    <param id="0" name="X">player.X</param>
+                </action>
+                <action id="-2" name="Set Y" type="trail">
+                    <param id="0" name="Y">player.Y</param>
+                </action>
+                <action id="-13" name="Set boolean" type="Player">
+                    <param id="0" name="Instance variable">moving</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment></comment>
+    </events>
+</c2eventsheet>

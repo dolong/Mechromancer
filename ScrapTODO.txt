@@ -1,0 +1,42 @@
+BUGS:
+Movement stopping on enemies
+Enemy Stacking (Could fix with pathfinding)
+
+POLISH A.I.
+-No overlapping enemies
+-Pathfinding enemies (move around each other)
+
+Enemies
+-More enemy types
+-More enemy abilities
+
+BOSS
+-Make interesting path algorithms
+-Summon method
+
+POLISH Hero Control
+-Selecting hero does not add movement, but highlights
+
+Hero Abilities
+-Selectable Abilities
+-Cool-down (make this consistent)
+
+
+Minion Control
+-Implement
+-Abilities?
+-Damaging attacks
+
+Minions
+-More Minion types
+
+Store
+-Purchase new minions (experience? scrap?) (Monetize in future)
+-Upgrading hero abilities
+
+Selected Unit Highlight
+-Highlight the selected unit
+
+Compatibility
+-iphone 3
+-firefox
